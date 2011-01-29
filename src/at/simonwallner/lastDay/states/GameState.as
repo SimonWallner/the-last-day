@@ -42,7 +42,7 @@ package at.simonwallner.lastDay.states
 			this.shipLaunched = false;
 			this.postLaunchCountdown = 5;
 			
-			FlxG.showBounds = true;
+//			FlxG.showBounds = true;
 		}
 		
 		override public function create():void

@@ -20,6 +20,17 @@ package at.simonwallner.lastDay.states
 			text.alignment = "center"; 
 			this.add(text);
 		}
+
+		public override function update():void
+		{
+			super.update();
+			
+			if (FlxG.mouse.justPressed())
+			{
+				FlxG.mouse.hide();
+				FlxG.state = new TitleState();
+			}
+		}
 		
 	}
 }

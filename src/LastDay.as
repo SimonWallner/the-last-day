@@ -1,11 +1,11 @@
 package
 {
+	import at.simonwallner.lastDay.states.TitleState;
+	
 	import flash.events.Event;
 	
 	import org.flixel.FlxG;
 	import org.flixel.FlxGame;
-	
-	import at.simonwallner.lastDay.states.GameState;
 	
 	[SWF(width="704", height="396", backgroundColor="#000000")] // swf properties 
 	[Frame(factoryClass="Preloader")] // tell compiler to use the flixel preloader
@@ -14,7 +14,7 @@ package
 	{
 		public function LastDay()
 		{
-			super(704/2, 396/2, GameState, 2);
+			super(704/2, 396/2, TitleState, 2);
 			FlxG.panel.setup("", 10, "", "", ""); // TODO: fill in real values here
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
