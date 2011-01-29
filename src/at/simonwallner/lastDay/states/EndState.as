@@ -1,18 +1,24 @@
 package at.simonwallner.lastDay.states
 {
+	import org.flixel.FlxG;
 	import org.flixel.FlxState;
 	import org.flixel.FlxText;
 
 	public class EndState extends FlxState
 	{
-		public function EndState()
+		private var message:String;
+		
+		public function EndState(message:String)
 		{
 			super();
+			this.message = message;
 		}
 		
 		public override function create():void
 		{
-			this.add(new FlxText(0, 50, 500, "you, bla bla bla bla..."));
+			var text:FlxText = new FlxText(0, 80, FlxG.width, "you packed " + message + " stranded on a deserted water planet and survived 3 more days");
+			text.alignment = "center"; 
+			this.add(text);
 		}
 		
 	}

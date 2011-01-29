@@ -3,7 +3,6 @@ package at.simonwallner.lastDay.states
 {
 	import at.simonwallner.lastDay.actors.Player;
 	import at.simonwallner.lastDay.actors.Ship;
-	import at.simonwallner.lastDay.actors.WorldObject;
 	import at.simonwallner.lastDay.data.Assets;
 	import at.simonwallner.lastDay.props.HandProp;
 	import at.simonwallner.lastDay.props.Radio;
@@ -121,7 +120,7 @@ package at.simonwallner.lastDay.states
 			{
 				this.postLaunchCountdown -= FlxG.elapsed;
 				if (this.postLaunchCountdown < 0)
-					FlxG.state = new EndState();
+					FlxG.state = new EndState(ship.getPayloadString());
 			}
 		}
 		
@@ -156,7 +155,7 @@ package at.simonwallner.lastDay.states
 			
 			else if (first is Ship && thingy is HandProp)
 			{
-				if (ship.storeItem(thingy as WorldObject))
+				if (ship.storeItem(thingy as HandProp))
 				{
 					handProps.remove(thingy);
 					player.drop(true);

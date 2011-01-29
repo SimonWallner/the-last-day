@@ -1,6 +1,7 @@
 package at.simonwallner.lastDay.actors
 {
 	import at.simonwallner.lastDay.data.Assets;
+	import at.simonwallner.lastDay.props.HandProp;
 	
 	import org.flixel.FlxG;
 	
@@ -9,9 +10,9 @@ package at.simonwallner.lastDay.actors
 		private var flying : Boolean;
 		private var speed : Number;
 		
-		private var slot1 : WorldObject;
-		private var slot2 : WorldObject;
-		private var slot3 : WorldObject;
+		private var slot1 : HandProp;
+		private var slot2 : HandProp;
+		private var slot3 : HandProp;
 		
 		private static const SLOT1_Y:Number = -30;
 		private static const SLOT2_Y:Number = -60;
@@ -58,7 +59,7 @@ package at.simonwallner.lastDay.actors
 				this.kill();
 		}
 		
-		public function storeItem(item:WorldObject):Boolean
+		public function storeItem(item:HandProp):Boolean
 		{
 			if (slot1 == null)
 			{
@@ -82,6 +83,21 @@ package at.simonwallner.lastDay.actors
 				return true;
 			}
 			return false;
+		}
+		
+		public function getPayloadString():String
+		{
+			var result:String = "a "
+			if (slot1 != null)
+				result += slot1.name;
+			
+			if (slot2 != null)
+				result += "and a " + slot2.name;
+				
+			if (slot3 != null)
+				result += "and a " + slot3.name;
+				
+			return result;
 		}
 	}
 }
