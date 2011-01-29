@@ -1,14 +1,19 @@
 package at.simonwallner.lastDay.states
 
 {
+	import at.simonwallner.lastDay.actors.HandProp;
 	import at.simonwallner.lastDay.actors.Player;
 	import at.simonwallner.lastDay.actors.Ship;
 	import at.simonwallner.lastDay.data.Assets;
 	
 	import org.flixel.FlxG;
+	import org.flixel.FlxGroup;
+	import org.flixel.FlxObject;
 	import org.flixel.FlxPoint;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxState;
+	import org.flixel.FlxText;
+	import org.flixel.FlxU;
 
 	public class GameState extends FlxState
 	{
@@ -20,6 +25,11 @@ package at.simonwallner.lastDay.states
 		private var bgFourth : FlxSprite;
 		
 		private var ship : Ship;
+		
+		private var handProps : FlxGroup;
+		private var radio : HandProp;
+		
+		private var overlayText : FlxText;
 		 		
 		public function GameState()
 		{
@@ -51,18 +61,48 @@ package at.simonwallner.lastDay.states
 			ship.x = 30;
 			this.add(ship);
 			
+			// hand props
+			handProps = new FlxGroup();
+			radio = new HandProp("Vintage '60s Radio");
+			radio.loadGraphic(Assets.IMG_HANDPROPS_RADIO);
+			radio.x = 300;
+			this.add(radio);
+			handProps.add(radio);
+			
 			
 			player = new Player();
 			add(player);
 			FlxG.follow(player.getCameraEmpty());
-			FlxG.followBounds(0, 0, 500, 500);
+			FlxG.followBounds(0, 0, 500, 2000);
+			
+			overlayText = new FlxText(0, 10, FlxG.width);
+			overlayText.alignment = "center";
+			overlayText.text = "";
+			overlayText.scrollFactor = new FlxPoint(0, 0);
+			this.add(overlayText);
 			
 //			FlxG.playMusic(Assets.MUS_GAME);
 		}
-		
 		override public function update():void
 		{
 			super.update();
+			overlayText.visible = false;
+			FlxU.overlap(player, handProps, overlapPlayer);
+			FlxU.overlap(player, ship, overlapPlayer);
+		}
+		
+		private function overlapPlayer(player : FlxObject, thingy : FlxObject) : void
+		{
+			if (thingy is HandProp)
+			{
+				overlayText.text = (thingy as HandProp).name;
+				overlayText.visible = true;
+			}
+			else if (thingy is Ship)
+			{
+				overlayText.text = "Ship"
+				overlayText.visible = true;
+			}
 		}
 	}
 }

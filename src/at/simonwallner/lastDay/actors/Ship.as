@@ -7,7 +7,7 @@ package at.simonwallner.lastDay.actors
 		public function Ship()
 		{
 			super();
-			this.loadGraphic(Assets.IMG_SHIP);
+			this.loadGraphic(Assets.IMG_PROPS_SHIP);
 		}
 		
 	}
