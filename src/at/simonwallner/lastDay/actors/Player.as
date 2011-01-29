@@ -13,7 +13,8 @@ package at.simonwallner.lastDay.actors
 		{
 			this.loadGraphic(Assets.IMG_PLAYER);
 			cameraEmpty = new FlxObject();
-			cameraEmpty.y = this.y - 50;
+			cameraEmpty.y = this.y - 55;
+			this.x = 200;
 		}
 		
 		private function move(offset:Number) : void
