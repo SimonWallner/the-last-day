@@ -7,14 +7,14 @@ package
 	
 	import at.simonwallner.lastDay.states.GameState;
 	
-	[SWF(width="512", height="384", backgroundColor="#000000")] // swf properties 
+	[SWF(width="704", height="396", backgroundColor="#000000")] // swf properties 
 	[Frame(factoryClass="Preloader")] // tell compiler to use the flixel preloader
 	
 	public class LastDay extends FlxGame
 	{
 		public function LastDay()
 		{
-			super(512, 384, GameState, 1);
+			super(704/2, 396/2, GameState, 2);
 			FlxG.panel.setup("", 10, "", "", ""); // TODO: fill in real values here
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
