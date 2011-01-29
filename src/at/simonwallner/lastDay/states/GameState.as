@@ -22,7 +22,8 @@ package at.simonwallner.lastDay.states
 			add(new FlxSprite(0, 0, Assets.IMG_TITLE_SCREEN));
 			player = new Player();
 			add(player);
-			FlxG.follow(player);
+			FlxG.follow(player.getCameraEmpty());
+			
 			
 			
 //			FlxG.playMusic(Assets.MUS_GAME);

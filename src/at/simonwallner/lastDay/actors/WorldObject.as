@@ -8,7 +8,7 @@ package at.simonwallner.lastDay.actors
 		
 		public function WorldObject()
 		{
-			baseline = 100;
+			baseline = 300;
 		}
 		
 		public override function loadGraphic(Graphic:Class,Animated:Boolean=false,Reverse:Boolean=false,Width:uint=0,Height:uint=0,Unique:Boolean=false):FlxSprite
