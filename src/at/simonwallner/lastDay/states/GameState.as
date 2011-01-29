@@ -98,14 +98,16 @@ package at.simonwallner.lastDay.states
 				overlayText.visible = true;
 				
 				if (FlxG.keys.justPressed("SPACE"))
-				{
 					(thingy as HandProp).interact();
-				}
 			}
 			else if (thingy is Ship)
 			{
 				overlayText.text = "Ship"
 				overlayText.visible = true;
+				
+				if (FlxG.keys.justPressed("SPACE"))
+					(thingy as Ship).start();
+
 			}
 		}
 	}

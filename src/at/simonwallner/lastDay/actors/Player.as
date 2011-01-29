@@ -19,16 +19,16 @@ package at.simonwallner.lastDay.actors
 		
 		private function move(offset:Number) : void
 		{
-			this.x += offset;
+			this.x += offset * FlxG.elapsed;
 			cameraEmpty.x = this.x;
 		}
 		
 		public override function update() : void
 		{
 			if (FlxG.keys.pressed("LEFT"))
-				this.move(-1);
+				this.move(-50);
 			else if (FlxG.keys.pressed("RIGHT"))
-				this.move(1);
+				this.move(50);
 		}
 		
 		public function getCameraEmpty() : FlxObject
