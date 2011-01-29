@@ -10,11 +10,17 @@ package at.simonwallner.lastDay.actors
 		private var cameraEmpty : FlxObject;
 		private var pickedObject : WorldObject;
 		
-		private const pickOffset : Number = 20;
+		private const pickOffset : Number = 24;
 			
 		public function Player()
 		{
-			this.loadGraphic(Assets.IMG_PLAYER);
+			this.loadGraphic(Assets.IMG_PLAYER, true, true, 16, 24);
+			this.addAnimation("idle", [0]);
+			this.addAnimation("walk", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], 20, true);
+			this.addAnimation("raise", [14]);
+			
+			this.play("idle");
+			
 			cameraEmpty = new FlxObject();
 			cameraEmpty.y = this.y - 55;
 			this.x = 200;
@@ -32,10 +38,25 @@ package at.simonwallner.lastDay.actors
 		
 		public override function update() : void
 		{
+			super.update();
+			
+			var walking : Boolean = false;
+			
 			if (FlxG.keys.pressed("LEFT"))
+			{
 				this.move(-50);
+				this.play("walk");
+				walking = true;
+			}
 			else if (FlxG.keys.pressed("RIGHT"))
+			{
 				this.move(50);
+				this.play("walk");
+				walking = true
+			}
+			
+			if (!walking)
+				this.play("idle");
 		}
 		
 		public function getCameraEmpty() : FlxObject
@@ -47,12 +68,15 @@ package at.simonwallner.lastDay.actors
 		{
 			thingy.setY(-pickOffset)
 			this.pickedObject = thingy;
+			pickedObject.x = this.x;
+			this.play("pick");
 		}
 		
 		public function drop():void
 		{
 			this.pickedObject.setY(0);
 			this.pickedObject = null;
+			this.play("idle");
 		}
 		
 		public function carriesObject() : Boolean

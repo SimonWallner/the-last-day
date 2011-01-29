@@ -4,7 +4,7 @@ package at.simonwallner.lastDay.data
 	{
 		// images
 		[Embed(source="../resources/title_screen.png")] public static const IMG_TITLE_SCREEN:Class;
-		[Embed(source="../resources/player.png")] public static const IMG_PLAYER:Class;
+		[Embed(source="../resources/walk.png")] public static const IMG_PLAYER:Class;
 		
 		// props
 		[Embed(source="../resources/props/ship.png")] public static const IMG_PROPS_SHIP:Class;
