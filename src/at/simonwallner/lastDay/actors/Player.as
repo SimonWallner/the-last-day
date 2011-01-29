@@ -4,6 +4,7 @@ package at.simonwallner.lastDay.actors
 	
 	import org.flixel.FlxG;
 	import org.flixel.FlxObject;
+	import org.flixel.FlxSprite;
 
 	public class Player extends WorldObject
 	{
@@ -34,6 +35,11 @@ package at.simonwallner.lastDay.actors
 			cameraEmpty.x = this.x;
 			if (pickedObject != null)
 				pickedObject.x = this.x;
+			
+			if (pickedObject == null)
+				this.play("walk");
+			else
+				this.play("raise");
 		}
 		
 		public override function update() : void
@@ -45,18 +51,23 @@ package at.simonwallner.lastDay.actors
 			if (FlxG.keys.pressed("LEFT"))
 			{
 				this.move(-50);
-				this.play("walk");
 				walking = true;
+				this.facing = FlxSprite.RIGHT;
 			}
 			else if (FlxG.keys.pressed("RIGHT"))
 			{
 				this.move(50);
-				this.play("walk");
 				walking = true
+				this.facing = FlxSprite.LEFT;
 			}
 			
 			if (!walking)
-				this.play("idle");
+			{
+				if (pickedObject == null)
+					this.play("idle");
+				else
+					this.play("raise");
+			}
 		}
 		
 		public function getCameraEmpty() : FlxObject
@@ -69,7 +80,6 @@ package at.simonwallner.lastDay.actors
 			thingy.setY(-pickOffset)
 			this.pickedObject = thingy;
 			pickedObject.x = this.x;
-			this.play("pick");
 		}
 		
 		public function drop():void
