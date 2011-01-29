@@ -1,10 +1,11 @@
 package at.simonwallner.lastDay.states
 
 {
-	import at.simonwallner.lastDay.actors.HandProp;
 	import at.simonwallner.lastDay.actors.Player;
 	import at.simonwallner.lastDay.actors.Ship;
 	import at.simonwallner.lastDay.data.Assets;
+	import at.simonwallner.lastDay.props.HandProp;
+	import at.simonwallner.lastDay.props.Radio;
 	
 	import org.flixel.FlxG;
 	import org.flixel.FlxGroup;
@@ -63,7 +64,7 @@ package at.simonwallner.lastDay.states
 			
 			// hand props
 			handProps = new FlxGroup();
-			radio = new HandProp("Vintage '60s Radio");
+			radio = new Radio("Vintage '60s Radio");
 			radio.loadGraphic(Assets.IMG_HANDPROPS_RADIO);
 			radio.x = 300;
 			this.add(radio);
@@ -80,8 +81,6 @@ package at.simonwallner.lastDay.states
 			overlayText.text = "";
 			overlayText.scrollFactor = new FlxPoint(0, 0);
 			this.add(overlayText);
-			
-//			FlxG.playMusic(Assets.MUS_GAME);
 		}
 		override public function update():void
 		{
@@ -97,6 +96,11 @@ package at.simonwallner.lastDay.states
 			{
 				overlayText.text = (thingy as HandProp).name;
 				overlayText.visible = true;
+				
+				if (FlxG.keys.justPressed("SPACE"))
+				{
+					(thingy as HandProp).interact();
+				}
 			}
 			else if (thingy is Ship)
 			{

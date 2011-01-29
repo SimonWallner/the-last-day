@@ -17,5 +17,8 @@ package at.simonwallner.lastDay.data
 		[Embed(source="../resources/scene/second.png")] public static const IMG_BG_SECOND:Class;
 		[Embed(source="../resources/scene/third.png")] public static const IMG_BG_THIRD:Class;
 		[Embed(source="../resources/scene/fourth.png")] public static const IMG_BG_FOURTH:Class;
+		
+		// sounds
+		[Embed(source="../resources/music/track_1.mp3")] public static const MUSIC_TRACK_1:Class;
 	}
 }

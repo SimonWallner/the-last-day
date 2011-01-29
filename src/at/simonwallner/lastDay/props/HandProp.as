@@ -1,5 +1,7 @@
-package at.simonwallner.lastDay.actors
+package at.simonwallner.lastDay.props
 {
+	import at.simonwallner.lastDay.actors.WorldObject;
+	
 	public class HandProp extends WorldObject
 	{
 		public var name : String;
@@ -8,6 +10,11 @@ package at.simonwallner.lastDay.actors
 		{
 			super();
 			this.name = name;
+		}
+		
+		public function interact() : void
+		{
+			
 		}
 		
 //		public function pickUp() void;
