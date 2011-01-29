@@ -10,7 +10,7 @@ package at.simonwallner.lastDay.props
 		
 		public function Radio(name : String)
 		{
-			super(name);
+			super(name, true);
 			playing = false;
 		}
 		

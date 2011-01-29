@@ -8,6 +8,9 @@ package at.simonwallner.lastDay.actors
 	public class Player extends WorldObject
 	{
 		private var cameraEmpty : FlxObject;
+		private var pickedObject : WorldObject;
+		
+		private const pickOffset : Number = 20;
 			
 		public function Player()
 		{
@@ -15,12 +18,16 @@ package at.simonwallner.lastDay.actors
 			cameraEmpty = new FlxObject();
 			cameraEmpty.y = this.y - 55;
 			this.x = 200;
+			
+			pickedObject = null;
 		}
 		
 		private function move(offset:Number) : void
 		{
 			this.x += offset * FlxG.elapsed;
 			cameraEmpty.x = this.x;
+			if (pickedObject != null)
+				pickedObject.x = this.x;
 		}
 		
 		public override function update() : void
@@ -34,6 +41,23 @@ package at.simonwallner.lastDay.actors
 		public function getCameraEmpty() : FlxObject
 		{
 			return cameraEmpty;
+		}
+		
+		public function pick(thingy : WorldObject) : void
+		{
+			thingy.setY(-pickOffset)
+			this.pickedObject = thingy;
+		}
+		
+		public function drop():void
+		{
+			this.pickedObject.setY(0);
+			this.pickedObject = null;
+		}
+		
+		public function carriesObject() : Boolean
+		{
+			return pickedObject != null;
 		}
 	}
 }

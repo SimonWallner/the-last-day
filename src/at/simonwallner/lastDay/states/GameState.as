@@ -29,12 +29,18 @@ package at.simonwallner.lastDay.states
 		
 		private var handProps : FlxGroup;
 		private var radio : HandProp;
+		private var radio2 : HandProp;
 		
 		private var overlayText : FlxText;
+		
+		private var shipLaunched : Boolean;
+		private var postLaunchCountdown : Number;
 		 		
 		public function GameState()
 		{
 			FlxG.mouse.show();
+			this.shipLaunched = false;
+			this.postLaunchCountdown = 5;
 		}
 		
 		override public function create():void
@@ -70,6 +76,13 @@ package at.simonwallner.lastDay.states
 			this.add(radio);
 			handProps.add(radio);
 			
+			radio2 = new HandProp("pick me Radio");
+			radio2.loadGraphic(Assets.IMG_HANDPROPS_RADIO);
+			radio2.x = 350;
+			this.add(radio2);
+			handProps.add(radio2);
+			
+			
 			
 			player = new Player();
 			add(player);
@@ -86,28 +99,53 @@ package at.simonwallner.lastDay.states
 		{
 			super.update();
 			overlayText.visible = false;
-			FlxU.overlap(player, handProps, overlapPlayer);
-			FlxU.overlap(player, ship, overlapPlayer);
+			
+			if (this.player.carriesObject())
+			{
+				if (FlxG.keys.justReleased("SPACE"))
+					player.drop();
+			}
+			else 
+			{
+				FlxU.overlap(player, handProps, overlapPlayer);
+				FlxU.overlap(player, ship, overlapPlayer);
+			}
+			
+			if (this.shipLaunched)
+			{
+				this.postLaunchCountdown -= FlxG.elapsed;
+				if (this.postLaunchCountdown < 0)
+					FlxG.state = new EndState();
+			}
 		}
 		
 		private function overlapPlayer(player : FlxObject, thingy : FlxObject) : void
 		{
 			if (thingy is HandProp)
 			{
-				overlayText.text = (thingy as HandProp).name;
+				var prop : HandProp = (thingy as HandProp)
+				overlayText.text = prop.name;
 				overlayText.visible = true;
 				
-				if (FlxG.keys.justPressed("SPACE"))
-					(thingy as HandProp).interact();
+				if (FlxG.keys.justReleased("SPACE"))
+				{
+					if (prop.isInteractive) 
+						prop.interact();
+					else
+						this.player.pick(prop);
+				}
 			}
 			else if (thingy is Ship)
 			{
 				overlayText.text = "Ship"
 				overlayText.visible = true;
 				
-				if (FlxG.keys.justPressed("SPACE"))
+				if (FlxG.keys.justReleased("SPACE"))
+				{
 					(thingy as Ship).start();
-
+					shipLaunched = true;
+					player.kill();
+				}
 			}
 		}
 	}
