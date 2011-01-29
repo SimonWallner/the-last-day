@@ -3,6 +3,7 @@ package at.simonwallner.lastDay.states
 {
 	import at.simonwallner.lastDay.actors.Player;
 	import at.simonwallner.lastDay.actors.Ship;
+	import at.simonwallner.lastDay.actors.WorldObject;
 	import at.simonwallner.lastDay.data.Assets;
 	import at.simonwallner.lastDay.props.HandProp;
 	import at.simonwallner.lastDay.props.Radio;
@@ -41,6 +42,8 @@ package at.simonwallner.lastDay.states
 			FlxG.mouse.show();
 			this.shipLaunched = false;
 			this.postLaunchCountdown = 5;
+			
+			FlxG.showBounds = true;
 		}
 		
 		override public function create():void
@@ -104,11 +107,14 @@ package at.simonwallner.lastDay.states
 			{
 				if (FlxG.keys.justReleased("SPACE"))
 					player.drop();
+				
+				FlxU.overlap(ship, handProps, overlapPlayer);
 			}
 			else 
 			{
 				FlxU.overlap(player, handProps, overlapPlayer);
 				FlxU.overlap(player, ship, overlapPlayer);
+				
 			}
 			
 			if (this.shipLaunched)
@@ -119,9 +125,9 @@ package at.simonwallner.lastDay.states
 			}
 		}
 		
-		private function overlapPlayer(player : FlxObject, thingy : FlxObject) : void
+		private function overlapPlayer(first : FlxObject, thingy : FlxObject) : void
 		{
-			if (thingy is HandProp)
+			if (first is Player && thingy is HandProp)
 			{
 				var prop : HandProp = (thingy as HandProp)
 				overlayText.text = prop.name;
@@ -135,7 +141,7 @@ package at.simonwallner.lastDay.states
 						this.player.pick(prop);
 				}
 			}
-			else if (thingy is Ship)
+			else if (first is Player && thingy is Ship)
 			{
 				overlayText.text = "Ship"
 				overlayText.visible = true;
@@ -145,6 +151,15 @@ package at.simonwallner.lastDay.states
 					(thingy as Ship).start();
 					shipLaunched = true;
 					player.kill();
+				}
+			}
+			
+			else if (first is Ship && thingy is HandProp)
+			{
+				if (ship.storeItem(thingy as WorldObject))
+				{
+					handProps.remove(thingy);
+					player.drop(true);
 				}
 			}
 		}

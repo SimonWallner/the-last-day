@@ -82,16 +82,27 @@ package at.simonwallner.lastDay.actors
 			pickedObject.x = this.x;
 		}
 		
-		public function drop():void
+		public function drop(inShip:Boolean = false):void
 		{
-			this.pickedObject.setY(0);
-			this.pickedObject = null;
+			if (this.pickedObject != null)
+			{
+				if (!inShip)
+					this.pickedObject.setY(0);
+				this.pickedObject = null;
+			}
 			this.play("idle");
 		}
 		
 		public function carriesObject() : Boolean
 		{
 			return pickedObject != null;
+		}
+		
+		public override function kill():void
+		{
+			if (pickedObject != null)
+				pickedObject.kill();
+			super.kill();
 		}
 	}
 }
