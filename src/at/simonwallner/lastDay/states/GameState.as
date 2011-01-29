@@ -2,6 +2,7 @@ package at.simonwallner.lastDay.states
 
 {
 	import at.simonwallner.lastDay.actors.Player;
+	import at.simonwallner.lastDay.actors.Ship;
 	import at.simonwallner.lastDay.data.Assets;
 	
 	import org.flixel.FlxG;
@@ -17,6 +18,8 @@ package at.simonwallner.lastDay.states
 		private var bgSecond : FlxSprite;
 		private var bgThird : FlxSprite;
 		private var bgFourth : FlxSprite;
+		
+		private var ship : Ship;
 		 		
 		public function GameState()
 		{
@@ -43,6 +46,11 @@ package at.simonwallner.lastDay.states
 			this.add(bgThird);
 			this.add(bgSecond);
 			this.add(bgFirst)
+			
+			ship = new Ship();
+			ship.x = 30;
+			this.add(ship);
+			
 			
 			player = new Player();
 			add(player);

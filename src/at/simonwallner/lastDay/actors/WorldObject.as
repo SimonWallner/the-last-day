@@ -4,11 +4,11 @@ package at.simonwallner.lastDay.actors
 
 	public class WorldObject extends FlxSprite
 	{
-		private var baseline : Number;
+		private var baselineOffset : Number;
 		
 		public function WorldObject()
 		{
-			baseline = 300;
+			baselineOffset = 182;
 		}
 		
 		public override function loadGraphic(Graphic:Class,Animated:Boolean=false,Reverse:Boolean=false,Width:uint=0,Height:uint=0,Unique:Boolean=false):FlxSprite
@@ -20,7 +20,12 @@ package at.simonwallner.lastDay.actors
 		
 		private function initPosition():void
 		{
-			this.y = baseline;
+			setY(0);
+		}
+		
+		public function setY(value:Number) : void
+		{
+			this.y = baselineOffset - this.height + value;			
 		}
 		
 	}
