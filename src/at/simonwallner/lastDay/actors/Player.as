@@ -48,13 +48,13 @@ package at.simonwallner.lastDay.actors
 			
 			var walking : Boolean = false;
 			
-			if (FlxG.keys.pressed("LEFT"))
+			if (FlxG.keys.pressed("LEFT") && this.x > 20)
 			{
 				this.move(-50);
 				walking = true;
 				this.facing = FlxSprite.RIGHT;
 			}
-			else if (FlxG.keys.pressed("RIGHT"))
+			else if (FlxG.keys.pressed("RIGHT") && this.x < 780)
 			{
 				this.move(50);
 				walking = true
