@@ -5,6 +5,7 @@ package at.simonwallner.lastDay.states
 	import at.simonwallner.lastDay.actors.Ship;
 	import at.simonwallner.lastDay.data.Assets;
 	import at.simonwallner.lastDay.props.HandProp;
+	import at.simonwallner.lastDay.props.HippyShirt;
 	import at.simonwallner.lastDay.props.Radio;
 	
 	import org.flixel.FlxG;
@@ -28,8 +29,13 @@ package at.simonwallner.lastDay.states
 		private var ship : Ship;
 		
 		private var handProps : FlxGroup;
-		private var radio : HandProp;
-		private var radio2 : HandProp;
+		private var radio : Radio;
+		private var blaster:Radio;
+		private var towel:HandProp;
+		private var socks:HandProp;
+		private var sodaMachine:HandProp;
+		private var hippyShirt:HippyShirt;
+		
 		
 		private var overlayText : FlxText;
 		
@@ -66,34 +72,67 @@ package at.simonwallner.lastDay.states
 			this.add(bgSecond);
 			this.add(bgFirst)
 			
-			ship = new Ship();
-			ship.x = 30;
-			this.add(ship);
+
 			
 			// hand props
 			handProps = new FlxGroup();
 			radio = new Radio("Vintage '60s Radio");
 			radio.loadGraphic(Assets.IMG_HANDPROPS_RADIO);
+			radio.soundSelect(1);
 			radio.x = 300;
 			this.add(radio);
 			handProps.add(radio);
 			
-			radio2 = new HandProp("pick me Radio");
-			radio2.loadGraphic(Assets.IMG_HANDPROPS_RADIO);
-			radio2.x = 350;
-			this.add(radio2);
-			handProps.add(radio2);
+			blaster = new Radio("Ghetto Blaster");
+			blaster.loadGraphic(Assets.IMG_HANDPROPS_BLASTER);
+			blaster.soundSelect(2);
+			blaster.x = 700;
+			this.add(blaster);
+			handProps.add(blaster);
+			
+			towel = new HandProp("Towel");
+			towel.loadGraphic(Assets.IMG_HANDPROPS_TOWEL);
+			towel.x = 575;
+			towel.setY(-10);
+			this.add(towel);
+			handProps.add(towel);
+			
+			socks = new HandProp("pair of Socks");
+			socks.loadGraphic(Assets.IMG_HANDPROPS_SOCKS);
+			socks.x = 605;
+			socks.setY(-20);
+			this.add(socks);
+			handProps.add(socks);
+			
+			sodaMachine = new HandProp("Soda Machine");
+			sodaMachine.loadGraphic(Assets.IMG_HANDPROPS_SODA_MACHINE);
+			sodaMachine.x = 410;
+			this.add(sodaMachine);
+			handProps.add(sodaMachine);
+			
+			hippyShirt = new HippyShirt("HippyShirt");
+			hippyShirt.loadGraphic(Assets.IMG_HANDPROPS_HIPPY_SHIRT);
+			hippyShirt.x = 555;
+			hippyShirt.setY(-13);
+			this.add(hippyShirt);
+			handProps.add(hippyShirt);
 			
 			
+			ship = new Ship();
+			ship.x = 100;
+			this.add(ship);
 			
 			player = new Player();
+			player.x = 230;
 			add(player);
 			FlxG.follow(player.getCameraEmpty());
-			FlxG.followBounds(0, 0, 500, 2000);
+			FlxG.followBounds(0, 0, 800, 2000);
 			
 			overlayText = new FlxText(0, 10, FlxG.width);
 			overlayText.alignment = "center";
 			overlayText.text = "";
+			overlayText.size = 8;
+			overlayText.shadow = 8;
 			overlayText.scrollFactor = new FlxPoint(0, 0);
 			this.add(overlayText);
 		}
@@ -126,7 +165,12 @@ package at.simonwallner.lastDay.states
 		
 		private function overlapPlayer(first : FlxObject, thingy : FlxObject) : void
 		{
-			if (first is Player && thingy is HandProp)
+			if (first is Player && thingy is HippyShirt && FlxG.keys.justReleased("SPACE"))
+			{
+				player.hippy();
+				thingy.kill();
+			}
+			else if (first is Player && thingy is HandProp)
 			{
 				var prop : HandProp = (thingy as HandProp)
 				overlayText.text = prop.name;

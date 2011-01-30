@@ -23,7 +23,7 @@ package at.simonwallner.lastDay.actors
 			this.play("idle");
 			
 			cameraEmpty = new FlxObject();
-			cameraEmpty.y = this.y - 55;
+			cameraEmpty.y = this.y - 67;
 			this.x = 200;
 			
 			pickedObject = null;
@@ -103,6 +103,11 @@ package at.simonwallner.lastDay.actors
 			if (pickedObject != null)
 				pickedObject.kill();
 			super.kill();
+		}
+		
+		public function hippy():void
+		{
+			this.loadGraphic(Assets.IMG_PLAYER_HIPPY, true, true, 16, 24);
 		}
 	}
 }

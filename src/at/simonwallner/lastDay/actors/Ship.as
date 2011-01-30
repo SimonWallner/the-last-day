@@ -75,7 +75,7 @@ package at.simonwallner.lastDay.actors
 				slot2.x = centerX + this.x - item.width/2;
 				return true;
 			}
-			else if (slot3 == null);
+			else if (slot3 == null)
 			{
 				slot3 = item;
 				slot3.setY(SLOT3_Y + item.height/2);
