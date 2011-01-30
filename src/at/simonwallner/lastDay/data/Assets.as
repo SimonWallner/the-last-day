@@ -25,12 +25,16 @@ package at.simonwallner.lastDay.data
 		[Embed(source="../resources/scene/fourth.png")] public static const IMG_BG_FOURTH:Class;
 		
 		// sounds
-		[Embed(source="../resources/music/track_1.mp3")] public static const MUSIC_TRACK_1:Class;
-		[Embed(source="../resources/music/track_2.mp3")] public static const MUSIC_TRACK_2:Class;
+		[Embed(source="../resources/music/finally.mp3")] public static const MUSIC_TRACK_1:Class;
+		[Embed(source="../resources/music/gangsta.mp3")] public static const MUSIC_TRACK_2:Class;
+		[Embed(source="../resources/music/rover.mp3")] public static const MUSIC_ROVER:Class;
 		[Embed(source="../resources/music/launch.mp3")] public static const SND_LAUNCH:Class;
 		[Embed(source="../resources/music/prelaunch.mp3")] public static const SND_PRELAUNCH:Class;
 		[Embed(source="../resources/music/radio.mp3")] public static const SND_RADIO:Class;
 		[Embed(source="../resources/music/soda.mp3")] public static const SND_SODA:Class;
 		[Embed(source="../resources/music/storage.mp3")] public static const SND_STORAGE:Class;
+		[Embed(source="../resources/music/drop.mp3")] public static const SND_DROP:Class;
+		[Embed(source="../resources/music/pickup.mp3")] public static const SND_PICK:Class;
+		[Embed(source="../resources/music/shirt.mp3")] public static const SND_SHIRT:Class;
 	}
 }

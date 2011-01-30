@@ -24,7 +24,7 @@ package at.simonwallner.lastDay.props
 				if (channel == 1)
 					FlxG.playMusic(Assets.MUSIC_TRACK_1);
 				else
-					FlxG.playMusic(Assets.MUSIC_TRACK_2);
+					FlxG.playMusic(Assets.MUSIC_TRACK_2, 0.5);
 					
 				playing = true;
 				this.isInteractive = false;

@@ -206,6 +206,7 @@ package at.simonwallner.lastDay.states
 				{
 					handProps.remove(thingy);
 					player.drop(true);
+					FlxG.play(Assets.SND_STORAGE).play();
 				}
 			}
 		}

@@ -40,7 +40,7 @@ package at.simonwallner.lastDay.states
 		{
 			super.update();
 			
-			if (FlxG.mouse.justPressed())
+			if (FlxG.mouse.justPressed() || FlxG.keys.justReleased("SPACE"))
 			{
 				FlxG.mouse.hide();
 				FlxG.state = new TitleState();

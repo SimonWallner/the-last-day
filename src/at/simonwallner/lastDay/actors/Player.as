@@ -80,6 +80,7 @@ package at.simonwallner.lastDay.actors
 			thingy.setY(-pickOffset)
 			this.pickedObject = thingy;
 			pickedObject.x = this.x;
+			FlxG.play(Assets.SND_PICK).play();
 		}
 		
 		public function drop(inShip:Boolean = false):void
@@ -87,7 +88,10 @@ package at.simonwallner.lastDay.actors
 			if (this.pickedObject != null)
 			{
 				if (!inShip)
+				{
 					this.pickedObject.setY(0);
+					FlxG.play(Assets.SND_DROP).play();
+				}
 				this.pickedObject = null;
 			}
 			this.play("idle");
@@ -108,6 +112,7 @@ package at.simonwallner.lastDay.actors
 		public function hippy():void
 		{
 			this.loadGraphic(Assets.IMG_PLAYER_HIPPY, true, true, 16, 24);
+			FlxG.play(Assets.SND_SHIRT);
 		}
 	}
 }
