@@ -2,6 +2,15 @@
 created by Simon Wallner and Vincent Wagner
 (c) 2011, some rights reserved
 
+Additional samples by:
+Splashdust  - negativebeep.wav (http://www.freesound.org/samplesViewSingle.php?id=67454)
+juskiddink  - Sci-fi 1.wav (http://www.freesound.org/samplesViewSingle.php?id=70042)
+morgantj - sodacanmachine.mp3 (http://www.freesound.org/samplesViewSingle.php?id=59669)
+DrNI  - old-radio-noise-findstation-switchoff-ukw.wav (http://www.freesound.org/samplesViewSingle.php?id=27511)
+ 
+Speech:
+John f. Kennedy - Message to the Congress on Urgent National Needs, May 25, 1961 (http://www.archive.org/details/jfks19610525)
+
 
 
 This game and all content in this file is licensed under the Attribution-Noncommercial-Share Alike 3.0 version of the Creative Commons License. For reference the license is given below and can also be found at http://creativecommons.org/licenses/by-nc-sa/3.0/

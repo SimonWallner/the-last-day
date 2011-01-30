@@ -34,6 +34,9 @@ package at.simonwallner.lastDay.states
 			var credits5:FlxText = new FlxText(0, 120, FlxG.width, "made with flixel");
 			credits5.alignment = "center"
 			this.add(credits5);
+			
+			var external:FlxText = new FlxText(0, 120, FlxG.width, "additional samples by: Splashdust@freesound.org, juskiddink@freesound.org, morgantj@freesound.org, DrNI@freesound.org, John F. Kennedy");
+			
 		}
 
 		public override function update():void
