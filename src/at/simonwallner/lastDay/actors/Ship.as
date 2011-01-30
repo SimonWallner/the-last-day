@@ -14,9 +14,9 @@ package at.simonwallner.lastDay.actors
 		private var slot2 : HandProp;
 		private var slot3 : HandProp;
 		
-		private static const SLOT1_Y:Number = -30;
-		private static const SLOT2_Y:Number = -60;
-		private static const SLOT3_Y:Number = -90;
+		private static const SLOT1_Y:Number = -39;
+		private static const SLOT2_Y:Number = -90;
+		private static const SLOT3_Y:Number = -140;
 		
 		private var centerX:Number; 
 		
@@ -64,22 +64,22 @@ package at.simonwallner.lastDay.actors
 			if (slot1 == null)
 			{
 				slot1 = item;
-				slot1.setY(SLOT1_Y);
-				slot1.x = centerX + this.x;
+				slot1.setY(SLOT1_Y + item.height/2);
+				slot1.x = centerX + this.x - item.width/2;
 				return true;
 			}
 			else if (slot2 == null)
 			{
 				slot2 = item;
-				slot2.setY(SLOT2_Y);
-				slot2.x = centerX + this.x;
+				slot2.setY(SLOT2_Y + item.height/2);
+				slot2.x = centerX + this.x - item.width/2;
 				return true;
 			}
 			else if (slot3 == null);
 			{
 				slot3 = item;
-				slot3.setY(SLOT3_Y);
-				slot3.x = centerX + this.x;
+				slot3.setY(SLOT3_Y + item.height/2);
+				slot3.x = centerX + this.x - item.width/2;
 				return true;
 			}
 			return false;
