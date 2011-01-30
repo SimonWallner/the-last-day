@@ -87,15 +87,18 @@ package at.simonwallner.lastDay.actors
 		
 		public function getPayloadString():String
 		{
-			var result:String = "a "
+			var result:String = "";
 			if (slot1 != null)
-				result += slot1.name;
+				result += "a " + slot1.name;
 			
 			if (slot2 != null)
 				result += "and a " + slot2.name;
 				
 			if (slot3 != null)
 				result += "and a " + slot3.name;
+				
+			if (slot1 == null)
+				return "NOTHING";
 				
 			return result;
 		}
