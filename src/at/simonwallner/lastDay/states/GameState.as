@@ -7,6 +7,7 @@ package at.simonwallner.lastDay.states
 	import at.simonwallner.lastDay.props.HandProp;
 	import at.simonwallner.lastDay.props.HippyShirt;
 	import at.simonwallner.lastDay.props.Radio;
+	import at.simonwallner.lastDay.props.SodaMachine;
 	
 	import org.flixel.FlxG;
 	import org.flixel.FlxGroup;
@@ -33,7 +34,7 @@ package at.simonwallner.lastDay.states
 		private var blaster:Radio;
 		private var towel:HandProp;
 		private var socks:HandProp;
-		private var sodaMachine:HandProp;
+		private var sodaMachine:SodaMachine;
 		private var hippyShirt:HippyShirt;
 		
 		
@@ -46,7 +47,9 @@ package at.simonwallner.lastDay.states
 		{
 			FlxG.mouse.show();
 			this.shipLaunched = false;
-			this.postLaunchCountdown = 5;
+			this.postLaunchCountdown = 11
+			
+			FlxG.mouse.hide();
 			
 //			FlxG.showBounds = true;
 		}
@@ -104,7 +107,7 @@ package at.simonwallner.lastDay.states
 			this.add(socks);
 			handProps.add(socks);
 			
-			sodaMachine = new HandProp("Soda Machine");
+			sodaMachine = new SodaMachine("Soda Machine");
 			sodaMachine.loadGraphic(Assets.IMG_HANDPROPS_SODA_MACHINE);
 			sodaMachine.x = 410;
 			this.add(sodaMachine);

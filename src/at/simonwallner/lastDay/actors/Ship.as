@@ -20,6 +20,9 @@ package at.simonwallner.lastDay.actors
 		
 		private var centerX:Number; 
 		
+		private var countDown:Number;
+		private var soundPlaying:Boolean;
+		
 		public function Ship()
 		{
 			super();
@@ -30,29 +33,43 @@ package at.simonwallner.lastDay.actors
 			slot2 = null;
 			slot3 = null;
 			centerX = this.width/2;
+			
+			countDown = 2;
+			soundPlaying = false;
 		}
 		
 		public function start():void
 		{
 			flying = true;
+			FlxG.play(Assets.SND_PRELAUNCH);
 		}
 		
 		public override function update():void
 		{
 			if (flying)
 			{
-				speed += 0.5 * FlxG.elapsed;
-				
-				this.y = this.y - speed;
-				
-				if (slot1 != null)
-					slot1.y -= speed;
+				if (countDown < 0)
+				{
+					if (!soundPlaying)
+					{
+						FlxG.play(Assets.SND_LAUNCH);
+						soundPlaying = true;
+					}
 					
-				if (slot2 != null)
-					slot2.y -= speed;
+					speed += 0.3 * FlxG.elapsed;
 					
-				if (slot3 != null)
-					slot3.y -= speed;
+					this.y = this.y - speed;
+					
+					if (slot1 != null)
+						slot1.y -= speed;
+						
+					if (slot2 != null)
+						slot2.y -= speed;
+						
+					if (slot3 != null)
+						slot3.y -= speed;
+				}
+				else countDown -= FlxG.elapsed;
 			}
 			
 			if (this.x < -200)
@@ -92,10 +109,10 @@ package at.simonwallner.lastDay.actors
 				result += "a " + slot1.name;
 			
 			if (slot2 != null)
-				result += "and a " + slot2.name;
+				result += " and a " + slot2.name;
 				
 			if (slot3 != null)
-				result += "and a " + slot3.name;
+				result += " and a " + slot3.name;
 				
 			if (slot1 == null)
 				return "NOTHING";

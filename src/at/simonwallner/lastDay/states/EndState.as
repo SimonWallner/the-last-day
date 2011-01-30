@@ -16,7 +16,7 @@ package at.simonwallner.lastDay.states
 		
 		public override function create():void
 		{
-			var text:FlxText = new FlxText(0, 80, FlxG.width, "you packed " + message + " stranded on a deserted water planet and survived 3 more days");
+			var text:FlxText = new FlxText(0, 80, FlxG.width, "you packed " + message + ", stranded on a deserted water planet and survived 3 more days");
 			text.alignment = "center";
 			
 			this.add(text);

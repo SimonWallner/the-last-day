@@ -19,6 +19,8 @@ package at.simonwallner.lastDay.props
 		{
 			if (!playing)
 			{
+				FlxG.play(Assets.SND_RADIO).play();
+				
 				if (channel == 1)
 					FlxG.playMusic(Assets.MUSIC_TRACK_1);
 				else
